@@ -1,31 +1,16 @@
 #include <stdio.h>
 
-char *reverse(char *str);
+union mixed{
+    int i_value;
+    float f_value;
+    char c_value;
+};
 
 int main(void){
-    char str[100];
-    char *rev = NULL;
-
-    printf("Enter the string: ");
-    scanf("%s", str);
-
-    printf("The original string is: %s\n", str);
-    
-    rev = reverse(str);
-
-    printf("The reversed string is: %s\n", rev);
+    union mixed x;
+    x.c_value = 'j';
+    printf("Memory size occupied by data: %zu\n", sizeof(x));
+    printf("\n%c\n", x.c_value);    
 
     return 0;
-}
-
-char *reverse(char *str){
-    static int i = 0;
-    static char rev[100];
-
-    if(*str){
-        reverse(str + 1);
-        rev[i++] = *str;
-    }
-
-    return rev;
 }
